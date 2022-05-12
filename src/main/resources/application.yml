@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/courses_management
+    username: coursesmanager
+    password: c0ursesmanager
+    driverClassName: com.mysql.cj.jdbc.Driver

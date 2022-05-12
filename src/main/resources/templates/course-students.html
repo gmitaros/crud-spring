@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>List Users</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <div>
+        <a href="/home">Home</a>
+
+    </div>
+    <div>
+        <h1 th:text="'Students of the ' + ${course.name}  + ' course'"></h1>
+    </div>
+
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Student Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Registration year</th>
+                <th>Semester</th>
+                <th>Remove Student</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student: ${listStudents}">
+                <td th:text="${student.studentId}">Student id</td>
+                <td th:text="${student.firstName}">First name</td>
+                <td th:text="${student.lastName}">Last name</td>
+                <td th:text="${student.registrationYear}">Registration year</td>
+                <td th:text="${student.semester}">Semester</td>
+                <td>
+                    <a th:href="@{/course/delete-student/{id}(id=${course.id}, studentId=${student.id})}">Remove
+                        Student</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>

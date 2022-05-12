@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update course</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <div class="container my-5">
+        <h2 class="mb-5">Update Course</h2>
+        <form action="#" th:action="@{/course/update/{id}(id=${course.id})}" th:object="${course}" method="post">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="courseId" class="col-form-label">Course Id</label>
+                    <input type="text" th:field="*{courseId}" class="form-control" id="courseId"
+                           placeholder="Course Id">
+                    <span th:if="${#fields.hasErrors('courseId')}" th:errors="*{courseId}" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="name" class="col-form-label">Course Name</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Course Name">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="syllabus" class="col-form-label">Syllabus</label>
+                    <input type="text" th:field="*{syllabus}" class="form-control" id="syllabus"
+                           placeholder="Syllabus">
+                    <span th:if="${#fields.hasErrors('syllabus')}" th:errors="*{syllabus}"
+                          class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="year" class="col-form-label">Year</label>
+                    <input type="number" th:field="*{year}" class="form-control" id="year"
+                           placeholder="Year">
+                    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"
+                          class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="syllabus" class="col-form-label">Semester</label>
+                    <input type="text" th:field="*{semester}" class="form-control" id="semester"
+                           placeholder="Semester">
+                    <span th:if="${#fields.hasErrors('semester')}" th:errors="*{semester}"
+                          class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <input type="submit" class="btn btn-primary" value="Update Course">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
